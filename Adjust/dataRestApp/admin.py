@@ -3,4 +3,9 @@ from __future__ import unicode_literals
 
 from django.contrib import admin
 
-# Register your models here.
+from dataRestApp import models
+
+admin.site.register(models.AdvertisingChannel)
+admin.site.register(models.Country)
+admin.site.register(models.OperatingSystem)
+admin.site.register(models.PerformanceMetric)
