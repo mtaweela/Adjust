@@ -5,21 +5,21 @@ from django.db import models
 
 
 class AdvertisingChannel(models.Model):
-    name = models.CharField(max_length=100)
+    name = models.CharField(max_length=100, unique=True)
 
     def __str__(self):
         return self.name
 
 
 class Country(models.Model):
-    name = models.CharField(max_length=100)
+    name = models.CharField(max_length=100,  unique=True)
 
     def __str__(self):
         return self.name
 
 
 class OperatingSystem(models.Model):
-    name = models.CharField(max_length=100)
+    name = models.CharField(max_length=100, unique=True)
 
     def __str__(self):
         return self.name
@@ -35,3 +35,7 @@ class PerformanceMetric(models.Model):
     advertising_channel = models.ForeignKey(AdvertisingChannel)
     country = models.ForeignKey(Country)
     operating_system = models.ForeignKey(OperatingSystem)
+
+    class Meta:
+        unique_together = (("date", "advertising_channel",
+                            "country", "operating_system",),)
